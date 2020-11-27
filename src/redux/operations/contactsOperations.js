@@ -17,7 +17,7 @@ export const addContact = (obj) => (dispatch) => {
     dispatch(addContactRequest());
 
     axios
-        .post("contacts", { ...obj })
+        .post("contacts", obj)
         .then(({ data }) => dispatch(addContatSuccess(data)))
         .catch((error) => dispatch(addContatError(error)));
 };

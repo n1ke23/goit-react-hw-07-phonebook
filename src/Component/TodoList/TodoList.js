@@ -19,15 +19,16 @@ function TodoList() {
 
 	const contacts = useSelector(state => items(state));
 	const isNotify = useSelector(state => notify(state));
+	const loader = useSelector(state => state.isContactLoading)
 
 
 
 	return (
 		<>
-
 			<CSSTransition in={true} appear={true} timeout={500} classNames="title" unmountOnExit>
 				<h1 className='titles'>Phonebook</h1>
 			</CSSTransition>
+			{loader && <h2>Loading...</h2>}
 			<CSSTransition in={isNotify} timeout={500} classNames="alert" unmountOnExit>
 				<h2 className='alert'>Contact is already exists!</h2>
 			</CSSTransition>

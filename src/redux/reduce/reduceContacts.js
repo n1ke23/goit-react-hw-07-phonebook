@@ -1,12 +1,13 @@
 // import { combineReducers } from 'redux';
 import { createReducer } from "@reduxjs/toolkit";
-import { ADD_CONTACT, REMOVE_CONTACT, FILTER_VALUE, FILTER_ARR, REMOVE_FILTER_ARR, NOTIFY, ADD_LOCAL_SOR } from './../const/const'
+import { ADD_CONTACT, REMOVE_CONTACT, FILTER_VALUE, FILTER_ARR, REMOVE_FILTER_ARR, NOTIFY, ADD_LOCAL_SOR, ERROR, REQUEST } from './../const/const'
 
 const initialState = {
     contacts: {
         items: [],
         filter: '',
     },
+    isContactLoading: false
 };
 
 export const reduceContacts = createReducer(initialState, {
@@ -17,6 +18,7 @@ export const reduceContacts = createReducer(initialState, {
                 ...state.contacts,
                 items: [...state.contacts.items, payload],
             },
+            isContactLoading: false
         }
     },
     [REMOVE_CONTACT]: (state, { payload }) => ({
@@ -25,6 +27,7 @@ export const reduceContacts = createReducer(initialState, {
             ...state.contacts,
             items: state.contacts.items.filter(contact => contact.id !== payload),
         },
+        isContactLoading: false
     }),
     [FILTER_VALUE]: (state, { payload }) => ({
         ...state,
@@ -62,7 +65,16 @@ export const reduceContacts = createReducer(initialState, {
             ...state.contacts,
             items: [...payload],
         },
-    })
+        isContactLoading: false
+    }),
+    [REQUEST]: (state) => ({
+        ...state,
+        isContactLoading: true
+    }),
+    [ERROR]: (state) => ({
+        ...state,
+        isContactLoading: false
+    }),
 })
 
     // const state = {

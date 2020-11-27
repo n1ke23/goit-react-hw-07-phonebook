@@ -10,3 +10,5 @@ export const REMOVE_FILTER_ARR = 'contacts/REMOVE_FILTER_ARR';
 export const NOTIFY = 'contacts/NOTIFY';
 
 export const ADD_LOCAL_SOR = "contact/ADD_LOCAL_SOR";
+export const REQUEST = "SUCCESS"
+export const ERROR = "ERROR"
